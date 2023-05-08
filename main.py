@@ -105,8 +105,8 @@ def checkParkingSpace(imgPro):
     # Write available and occupied spaces to JSON file every 5 seconds
     current_time = time.time()
     if current_time - checkParkingSpace.last_update_time >= 5:
-        data = {"availableSpaces": availableSpaces, "occupiedSpaces": occupiedSpaces}
-        with open('E:/Users/davet/PartkTafinalpls/app/src/main/assets/parking_spaces.json', 'w') as f:
+        data = [{"available": availableSpaces, "occupied": occupiedSpaces}]
+        with open('parking_spaces.json', 'w') as f:
             json.dump(data, f)
         checkParkingSpace.last_update_time = current_time
     
@@ -116,6 +116,7 @@ def checkParkingSpace(imgPro):
     cvzone.putTextRect(img, f"Occupied spaces: {occupiedSpaces}", (50, 100), scale=1,
                        thickness=2, offset=10, colorR=(0, 0, 255))
 checkParkingSpace.last_update_time = 0
+
     
 while True:
 
